@@ -1,6 +1,6 @@
 import express from 'express'
 import { getPayload } from './getPayload'
-import { nextHandler } from './nextUtils'
+import { nextApp, nextHandler } from './nextUtils'
 
 
 const app = express()
@@ -16,8 +16,15 @@ const start = async () => {
             }
         }
     })
-    // Self hosting backend
+    // BACKEND auto hosting
     app.use((req,res) => nextHandler(req, res))
+    nextApp.prepare().then(() => {
+        payload.logger.info(`Next.js is ready`)
+
+        app.listen(PORT, async () => {
+            payload.logger.info(`Server is ready on http://localhost:${process.env.NEXT_PUBLIC_PORT || PORT}`)
+        })
+    })
 }
 
 

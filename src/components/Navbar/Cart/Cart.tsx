@@ -11,7 +11,7 @@ import Link from "next/link";
 
 
 const Cart = () =>{
-    const itemCount = 0; 
+    const itemCount = 1; 
     return(
         <Sheet>
             <SheetTrigger className="group -m-2 flex items-center p-2">
@@ -40,7 +40,7 @@ const Cart = () =>{
                         <div className="space-y-1.5 text-sm">
                             <div className="flex">
                                 <span className="flex-1"> Sem taxas adicionais</span>
-                                <span>{formatPrice(1)}</span>
+                                
                             </div>
                         </div>
                         <SheetFooter>

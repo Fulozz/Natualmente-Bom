@@ -3,6 +3,7 @@ import path from 'path'
 import  type {InitOptions} from 'payload/config'
 import payload from 'payload'
 
+
 dotenv.config({
     path: path.resolve(__dirname,'../.env'),
 })
@@ -17,6 +18,8 @@ if(!cached){
 interface Args{
     initOptions?: Partial<InitOptions>
 }
+
+// Conecction to the database
 export const getPayload = async ({initOptions}: Args = {}) => {
     if(!process.env.PAYLOAD_SECRET){
         throw new Error('PAYLOAD_SECRET is missing')
