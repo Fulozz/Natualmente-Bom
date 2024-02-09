@@ -5,16 +5,19 @@
  * author: Thiago Silva Andrade
  */
 
+//NEXT imports
 import Link from "next/link"
-import MaxWidthWrapper from "../MaxWidthComponent"
+// UI imports
 import { Icons } from "./Icons"
-import NavItems from "./NavItems/NavItems"
 import { buttonVariants } from "../ui/button"
+// VIEWS
 import Cart from "./Cart/Cart"
-
+import NavItems from "./NavItems/NavItems"
+import MaxWidthWrapper from "../MaxWidthComponent"
 const Navbar = () => {
     //mockup 
     const user = null
+    
     return(
         <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
             <header className="relative bg-white">

@@ -7,8 +7,11 @@
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+// UI imports
 import "./globals.css";
 import { cn } from "@/lib/utils";
+
+// VIEWS
 import Navbar from "@/components/Navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });

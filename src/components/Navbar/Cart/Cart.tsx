@@ -1,17 +1,23 @@
 "use client"
-
-import { buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetTrigger,  SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet"
-import { formatPrice } from "@/lib/utils";
-
-import { ShoppingCart } from "lucide-react"
+// NEXT imports
 import Image from "next/image";
 import Link from "next/link";
 
+// UI imports
+import { buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Sheet, SheetTrigger,  SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet"
+import { ShoppingCart } from "lucide-react"
+
+// LIB imports
+import { formatPrice } from "@/lib/utils";
+
+
+
+
 
 const Cart = () =>{
-    const itemCount = 1; 
+    const itemCount = 0; 
     return(
         <Sheet>
             <SheetTrigger className="group -m-2 flex items-center p-2">
