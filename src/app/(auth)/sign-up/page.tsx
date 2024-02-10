@@ -1,8 +1,13 @@
 "use client";
 // NEXT imports
 import Link from "next/link";
+
+// LIBS import
+import { z } from "zod";
+
 // HOOKs imports
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // UI imports
 import { Icons } from "@/components/Navbar/Icons";
@@ -12,9 +17,22 @@ import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 const Page = () => {
+  const AuthCredentialSchema = z.object({
+    //  Verifica se tem o @ e termina com .com e valida sendo um email real ou não
+    email: z.string().email(),
+    //  Verifica se a senha tem no minimo 8 caracteres
+    password: z
+      .string()
+      .min(8, { message: "A senha deve ter no minimo 8 caracteres" }),
+  });
+    type TAuthCredentialSchema = z.infer<typeof AuthCredentialSchema>
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TAuthCredentialSchema>({ resolver: zodResolver(AuthCredentialSchema) });
 
-    const {} = useForm()
-
+  const onSubmit = ({email, password}: TAuthCredentialSchema) => {};
   return (
     <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
@@ -35,16 +53,15 @@ const Page = () => {
         </div>
         <div className="grid gap-6">
           <form
-            onSubmit={() => {
-              return null;
-            }}
+            onSubmit={handleSubmit(onSubmit)}
           >
             <div className="grid gap-2">
               <div className="grid gap-1 py-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
+                {...register("email")}
                   className={cn({
-                    "focus-visible:ring-red-500": false,
+                    "focus-visible:ring-red-500": errors.email,
                   })}
                   placeholder="you@exemple.com"
                 />
@@ -53,8 +70,9 @@ const Page = () => {
                 <div className="grid gap-1 py-2">
                   <Label htmlFor="password">Senha</Label>
                   <Input
+                  {...register("password")}
                     className={cn({
-                      "focus-visible:ring-red-500": false,
+                      "focus-visible:ring-red-500": errors.password,
                     })}
                     placeholder="Password"
                   />
