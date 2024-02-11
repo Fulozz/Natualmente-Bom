@@ -1,3 +1,10 @@
+/**
+ * file: "server"
+ * description: arquivo responsavel pela inicialização do servidor e configuração de porta
+ * data: 11/02/2024
+ * author: Thiago Silva Andrade
+ */
+
 import express from "express";
 import { getPayload } from "./getPayload";
 import { nextApp, nextHandler } from "./nextUtils";

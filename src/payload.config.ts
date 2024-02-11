@@ -1,5 +1,9 @@
-//crie a documentação do seu projeto
-
+/**
+ * file: "payload.config"
+ * description: arquivo responsavel pela criação da tela de admin, configuração do banco de dados, e configuração do editor de texto
+ * data: 11/02/2024
+ * author: Thiago Silva Andrade
+ */
 import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { buildConfig } from "payload/config";

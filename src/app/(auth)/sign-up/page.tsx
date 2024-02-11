@@ -8,6 +8,7 @@ import { z } from "zod";
 // HOOKs imports
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { TAuthCredentialSchema, AuthCredentialSchema } from "@/lib/validators/accountCredentialsValidator";
 
 // UI imports
 import { Icons } from "@/components/Navbar/Icons";
@@ -16,23 +17,20 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 const Page = () => {
-  const AuthCredentialSchema = z.object({
-    //  Verifica se tem o @ e termina com .com e valida sendo um email real ou não
-    email: z.string().email(),
-    //  Verifica se a senha tem no minimo 8 caracteres
-    password: z
-      .string()
-      .min(8, { message: "A senha deve ter no minimo 8 caracteres" }),
-  });
-    type TAuthCredentialSchema = z.infer<typeof AuthCredentialSchema>
+ 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {  errors },
   } = useForm<TAuthCredentialSchema>({ resolver: zodResolver(AuthCredentialSchema) });
 
-  const onSubmit = ({email, password}: TAuthCredentialSchema) => {};
+  const onSubmit = ({email, password}: TAuthCredentialSchema) => {
+    // send data to server
+    
+  };
+
   return (
     <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">

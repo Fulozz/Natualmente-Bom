@@ -1,3 +1,10 @@
+/**
+ * file: "getPayload"
+ * description: arquivo responsavel pela conexão com o banco de dados e utilziação do mesmo
+ * data: 11/02/2024
+ * author: Thiago Silva Andrade
+ */
+
 import dotenv from "dotenv";
 import path from "path";
 import type { InitOptions } from "payload/config";

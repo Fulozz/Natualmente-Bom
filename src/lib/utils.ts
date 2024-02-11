@@ -7,6 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 // Formatação para ser exposto todo conteudo numerico em valor
 export function formatPrice(
+  //  Verifica se o valor é uma string ou um numero
   price: number | string,
   options: {
     currency?: "USD" | "EUR" | "BRL";
