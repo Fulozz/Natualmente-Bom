@@ -1,14 +1,19 @@
-"use client";
+"use client"
+/**
+ * file: "src/app/(auth)/sign-up/page.tsx"
+ * description: arquivo responsavel pela pagina de cadastro de usuario
+ * data: 13/02/2024
+ * author: Thiago Silva Andrade
+ */
 // NEXT imports
 import Link from "next/link";
 
-// LIBS import
-import { z } from "zod";
+
 
 // HOOKs imports
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TAuthCredentialSchema, AuthCredentialSchema } from "@/lib/validators/accountCredentialsValidator";
+import { TAuthCredentialSchema, AuthCredentialsValidator} from "@/lib/validators/accountCredentialsValidator";
 
 // UI imports
 import { Icons } from "@/components/Navbar/Icons";
@@ -17,18 +22,25 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { trpc } from "@/trpc/client";
 
 const Page = () => {
  
   const {
     register,
     handleSubmit,
-    formState: {  errors },
-  } = useForm<TAuthCredentialSchema>({ resolver: zodResolver(AuthCredentialSchema) });
+    formState: { errors },
+  } = useForm<TAuthCredentialSchema>({ 
+    resolver: zodResolver(AuthCredentialsValidator) 
+  });
+    // POST request, modification and mutation
+  const {mutate, isLoading} = trpc.auth.createPayloadUser.useMutation({
+    
+  })
 
   const onSubmit = ({email, password}: TAuthCredentialSchema) => {
     // send data to server
-    
+    mutate({ email, password})
   };
 
   return (
@@ -69,6 +81,7 @@ const Page = () => {
                   <Label htmlFor="password">Senha</Label>
                   <Input
                   {...register("password")}
+                  type="password"
                     className={cn({
                       "focus-visible:ring-red-500": errors.password,
                     })}

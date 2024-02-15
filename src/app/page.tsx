@@ -1,4 +1,9 @@
-
+/**
+ * file: "src/app/page"
+ * description: arquivo responsavel pela pagina inicial do site
+ * data: 13/02/2024
+ * author: Thiago Silva Andrade
+ */
 
 import MaxWidthWrapper from "@/components/MaxWidthComponent";
 // Import dos templates do Shadcn-ui
