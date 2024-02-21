@@ -28,7 +28,7 @@ export default buildConfig({
     bundler: webpackBundler(),
     // Configuração do titulo da pagina e favicon
     meta: {
-      titleSuffix: "- Digital Store",
+      titleSuffix: "- Natualmente Bom",
       favicon: "/favicon.ico",
       ogImage: "/thumbnail.jpg",
     },

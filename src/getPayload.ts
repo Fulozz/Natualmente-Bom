@@ -51,7 +51,7 @@ export const getPayloadClient = async ({ initOptions }: Args = {}): Promise<Payl
       email: {
         transport: transporter,
         fromAddress: "onboarding@resend.dev",
-        fromName: "Digital-Store",
+        fromName: "Natualmente-Bom",
       },
 
       secret: process.env.PAYLOAD_SECRET,

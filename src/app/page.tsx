@@ -34,11 +34,11 @@ export default function Home() {
     <>
     <MaxWidthWrapper>
       <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:tx-6xl">Seu mercado de alta qualidade{' '}
-          <span className="text-green-600">Digital Store</span>.
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:tx-4xl">Seu mercado de alta qualidade,{' '}
+          <span className="text-4xl text-green-600">Natualmente Bom</span>.
         </h1>
         <p className="mt-6 text-lg max-w-prose text-muted-foreground">
-          Bem-vindo ao Digital Store. Todos os produtos em nossa plataforma são verificados por nossa equipe para garantir nossos mais altos padrões de qualidade!
+          Bem-vindo ao Natualmente Bom. Todos os produtos em nossa plataforma são verificados por nossa equipe para garantir nossos mais altos padrões de qualidade!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 mt-6">
         <Link href={'/products'} className={buttonVariants()}>Procure produtos </Link>
