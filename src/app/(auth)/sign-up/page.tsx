@@ -1,19 +1,26 @@
-"use client"
 /**
  * file: "src/app/(auth)/sign-up/page.tsx"
  * description: arquivo responsavel pela pagina de cadastro de usuario
  * data: 13/02/2024
  * author: Thiago Silva Andrade
  */
+
+"use client";
 // NEXT imports
 import Link from "next/link";
 
+//TRPC Import
+import { trpc } from "@/trpc/client";
 
-
+// TOAST Import
+import { toast } from "sonner";
 // HOOKs imports
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TAuthCredentialSchema, AuthCredentialsValidator} from "@/lib/validators/accountCredentialsValidator";
+import {
+  TAuthCredentialSchema,
+  AuthCredentialsValidator,
+} from "@/lib/validators/accountCredentialsValidator";
 
 // UI imports
 import { Icons } from "@/components/Navbar/Icons";
@@ -22,25 +29,44 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { trpc } from "@/trpc/client";
+import { ZodError } from "zod";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
- 
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TAuthCredentialSchema>({ 
-    resolver: zodResolver(AuthCredentialsValidator) 
+  } = useForm<TAuthCredentialSchema>({
+    resolver: zodResolver(AuthCredentialsValidator),
   });
-    // POST request, modification and mutation
-  const {mutate, isLoading} = trpc.auth.createPayloadUser.useMutation({
-    
-  })
+  // POST request, modification and mutation
+  const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
+    onError: (error) => {
+      // Erro de email já cadastrado
+      if (error.data?.code === "CONFLICT") {
+        toast.error("Email já cadastrado, tente outro email");
+        return;
+      };
+      // Segurança Adicional de API error
+      if(error instanceof ZodError){
+        toast.error(error.issues[0].message);
+        return;
+      };
+      toast.error("Alguma coisa deu errado, tente novamente");
+    },
+    onSuccess: ({sentToEmail}) => {
+      // Retorna uma mensagem de sucesso visual para o usuario
+      toast.success(`Email enviado para ${sentToEmail} com sucesso, verifique sua caixa de entrada e siga as instruções para ativar sua conta!`);
+      // Vai para a pagina de informação de verificação de email
+      router.push('/verify-email?to=' + sentToEmail);
+    },
+  });
 
-  const onSubmit = ({email, password}: TAuthCredentialSchema) => {
-    // send data to server
-    mutate({ email, password})
+  const onSubmit = ({ email, password }: TAuthCredentialSchema) => {
+    // Envia os dados para a API
+    mutate({ email, password });
   };
 
   return (
@@ -62,14 +88,12 @@ const Page = () => {
           </Link>
         </div>
         <div className="grid gap-6">
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-          >
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-2">
               <div className="grid gap-1 py-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
-                {...register("email")}
+                  {...register("email")}
                   className={cn({
                     "focus-visible:ring-red-500": errors.email,
                   })}
@@ -80,8 +104,8 @@ const Page = () => {
                 <div className="grid gap-1 py-2">
                   <Label htmlFor="password">Senha</Label>
                   <Input
-                  {...register("password")}
-                  type="password"
+                    {...register("password")}
+                    type="password"
                     className={cn({
                       "focus-visible:ring-red-500": errors.password,
                     })}

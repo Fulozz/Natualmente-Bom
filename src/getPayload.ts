@@ -50,7 +50,7 @@ export const getPayloadClient = async ({ initOptions }: Args = {}): Promise<Payl
     cached.promise = payload.init({
       email: {
         transport: transporter,
-        fromAddress: "onboarding@resend.dev",
+        fromAddress: "onboarding@resend.dev", // TODO: Change this to your email, register my domain
         fromName: "Natualmente-Bom",
       },
 

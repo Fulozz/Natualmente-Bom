@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 // VIEWS
 import Navbar from "@/components/Navbar/Navbar";
 import Providers from "@/components/Providers";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,6 +40,8 @@ export default function RootLayout({
             
           </Providers>
         </main>
+        {/* Exibição dos erros */}
+        <Toaster  position="top-center" richColors/>
       </body>
     </html>
   );
