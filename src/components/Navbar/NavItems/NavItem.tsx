@@ -1,3 +1,10 @@
+/**
+ * file: "components/Navbar/NavItems/NavItem.tsx"
+ * description: arquivo responsavel pela renderização dos itens da Navbar
+ * data: 21/01/2024
+ * author: Thiago Silva Andrade
+ */
+
 "use client"
 
 import { ChevronDown } from "lucide-react"

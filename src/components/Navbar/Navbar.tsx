@@ -14,9 +14,16 @@ import { buttonVariants } from "../ui/button"
 import Cart from "./Cart/Cart"
 import NavItems from "./NavItems/NavItems"
 import MaxWidthWrapper from "../MaxWidthComponent"
-const Navbar = () => {
-    //mockup 
-    const user = null
+import UserAccountNav from "./NavItems/UserAccountNav"
+
+// USER DATA
+import { getServerSideUser } from "@/lib/payloadUtils"
+import { cookies } from "next/headers"
+
+const Navbar = async () => {
+    //Realiza a requisição do usuario para o backend utilizando o token que está salvo nos cookies
+    const nextCookies = cookies()
+    const { user } = await getServerSideUser(nextCookies)
     
     return(
         <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
@@ -38,7 +45,7 @@ const Navbar = () => {
                                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                                     {user ? null : (<Link  href='/sign-in' className={buttonVariants({variant: "ghost"})}>Login</Link>)}
                                     {user ? null : (<span className="h-6  w-px bg-gray-200" aria-hidden="true" />)}
-                                    {user ? (<p>a</p>) : (<Link href="/sign-up" className={buttonVariants({variant: "ghost"})}>Registre</Link>)}
+                                    {user ? (<UserAccountNav />) : (<Link href="/sign-up" className={buttonVariants({variant: "ghost"})}>Registre</Link>)}
 
                                     {user ? <span className="h-6  w-px bg-gray-200" aria-hidden="true" /> : null}
                                     {user ? null : (<div className="flex lg:ml-6" > <span className="h-6  w-px bg-gray-200" aria-hidden="true" /> </div>)}

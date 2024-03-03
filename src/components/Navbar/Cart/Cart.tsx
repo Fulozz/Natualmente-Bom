@@ -17,7 +17,7 @@ import { formatPrice } from "@/lib/utils";
 
 
 const Cart = () =>{
-    const itemCount = 1; 
+    const itemCount = 0; 
     return(
         <Sheet>
             <SheetTrigger className="group -m-2 flex items-center p-2">

@@ -5,8 +5,6 @@
  * author: Thiago Silva Andrade
  */
 
-
-// Use client é necessario para poder utilizar o useState pois sem ele o Typescript/React trata a pagina como Server side
 "use client"
 
 import { useEffect, useRef, useState } from "react"
