@@ -4,9 +4,10 @@
  * data: 11/02/2024
  * author: Thiago Silva Andrade
  */
+import { ExpressContext } from "@/server";
 import { initTRPC } from "@trpc/server";
 
-const t = initTRPC.context().create();
+const t = initTRPC.context<ExpressContext>().create();
 
 export const router = t.router;
 export const publicProcedure = t.procedure;

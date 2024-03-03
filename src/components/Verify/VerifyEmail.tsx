@@ -59,9 +59,7 @@ const VerifyEmail = ({ token }: VerifyEmailProps) => {
         <h3 className="text-muted-foreground text-sm">
           Verificando seu email...
         </h3>
-        <p className="text-muted-foreground text-sm">
-          Não irá demorar muito.
-        </p>
+        <p className="text-muted-foreground text-sm">Não irá demorar muito.</p>
       </div>
     );
   }

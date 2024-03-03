@@ -6,7 +6,7 @@ import Link from "next/link";
 // UI imports
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetTrigger,  SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet"
+import { Sheet, SheetTrigger,  SheetContent, SheetHeader, SheetTitle, SheetFooter } from "@/components/ui/sheet";
 import { ShoppingCart } from "lucide-react"
 
 // LIB imports

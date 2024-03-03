@@ -48,19 +48,21 @@ const Page = () => {
       if (error.data?.code === "CONFLICT") {
         toast.error("Email já cadastrado, tente outro email");
         return;
-      };
+      }
       // Segurança Adicional de API error
-      if(error instanceof ZodError){
+      if (error instanceof ZodError) {
         toast.error(error.issues[0].message);
         return;
-      };
+      }
       toast.error("Alguma coisa deu errado, tente novamente");
     },
-    onSuccess: ({sentToEmail}) => {
+    onSuccess: ({ sentToEmail }) => {
       // Retorna uma mensagem de sucesso visual para o usuario
-      toast.success(`Email enviado para ${sentToEmail} com sucesso, verifique sua caixa de entrada e siga as instruções para ativar sua conta!`);
+      toast.success(
+        `Email enviado para ${sentToEmail} com sucesso, verifique sua caixa de entrada e siga as instruções para ativar sua conta!`
+      );
       // Vai para a pagina de informação de verificação de email
-      router.push('/verify-email?to=' + sentToEmail);
+      router.push("/verify-email?to=" + sentToEmail);
     },
   });
 
@@ -99,6 +101,9 @@ const Page = () => {
                   })}
                   placeholder="you@exemple.com"
                 />
+                {errors?.email && (
+                  <p className="text-sm text-red-500">{errors.email.message}</p>
+                )}
               </div>
               <div className="grid gap-2">
                 <div className="grid gap-1 py-2">
@@ -111,6 +116,11 @@ const Page = () => {
                     })}
                     placeholder="Password"
                   />
+                  {errors?.password && (
+                    <p className="text-sm text-red-500">
+                      {errors.password.message}
+                    </p>
+                  )}
                 </div>
                 <Button>Criar conta!</Button>
               </div>
