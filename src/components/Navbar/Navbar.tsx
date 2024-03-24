@@ -11,7 +11,7 @@ import Link from "next/link"
 import { Icons } from "./Icons"
 import { buttonVariants } from "../ui/button"
 // VIEWS
-import Cart from "./Cart/Cart"
+import Cart from "./NavItems/Cart"
 import NavItems from "./NavItems/NavItems"
 import MaxWidthWrapper from "../MaxWidthComponent"
 import UserAccountNav from "./NavItems/UserAccountNav"
