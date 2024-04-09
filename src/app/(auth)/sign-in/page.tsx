@@ -59,8 +59,6 @@ const Page = () => {
   const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
     onSuccess: () => {
       toast.success("Login feito com sucesso");
-      // Atualiza a pagina
-      router.refresh();
       // Se o usuario tiver uma origem, ele volta para a origem
       if (origin) {
         router.push(`/${origin}`);
@@ -73,6 +71,7 @@ const Page = () => {
       }
 
       router.push("/");
+      router.refresh();
     },
     onError: (error) => {
       if (error.data?.code === "UNAUTHORIZED") {
